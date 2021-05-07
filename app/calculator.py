@@ -20,9 +20,7 @@ class Calculator():
     # Metódo estático para carregar configurações da calculadora
     @staticmethod
     def load_settings():
-
         settings = json_load(open("./app/settings/settings.json")) 
-
         return settings
 
     def start(self):
