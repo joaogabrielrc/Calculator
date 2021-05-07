@@ -5,4 +5,4 @@
 
 class Calculation():
     def __init__(self):
-        self.init = 'init_calculation'
+        self.init = "init_calculation"

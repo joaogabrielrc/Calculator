@@ -3,12 +3,12 @@
 
 
 
-# Módulo tkinter
 import tkinter as tk
+
 # Módulo interno
 from app.calculator import Calculator
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     window = tk.Tk()
     calculator = Calculator(window)
-    # calculator.start()
+    calculator.start()
