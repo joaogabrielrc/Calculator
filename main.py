@@ -1,13 +1,14 @@
-# tkinter module
-import tkinter as tk
+# Author: João Gabriel Cardoso
+# GitHub: github.com/joaogabrielrc
 
-# internal module
+
+
+# Módulo tkinter
+import tkinter as tk
+# Módulo interno
 from app.calculator import Calculator
 
-# if the current file name is the same as the the main file name do
 if __name__ == '__main__':
-    # Creating the window
     window = tk.Tk()
-    
     calculator = Calculator(window)
-    calculator.start()
+    # calculator.start()
