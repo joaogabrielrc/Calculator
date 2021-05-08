@@ -2,13 +2,16 @@
 # GitHub: github.com/joaogabrielrc
 
 
-
 import tkinter as tk
 
-# Módulo interno
+# Internal module
 from app.calculator import Calculator
 
 if __name__ == "__main__":
-    window = tk.Tk()
+    # Creating the window
+    window = tk.Tk()    
+
     calculator = Calculator(window)
+
+    # running the program
     calculator.start()
