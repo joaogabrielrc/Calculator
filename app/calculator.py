@@ -14,8 +14,8 @@ class Calculator():
 
         # Window settings
         self.window.title("Calculator")
-        self.window.maxsize(width=290, height=430)
-        self.window.minsize(width=290, height=430)
+        self.window.maxsize(width=290, height=410)
+        self.window.minsize(width=290, height=410)
         self.window.geometry("+150+100")
         self.window["bg"] = "#1a1a1a"
 
@@ -60,21 +60,45 @@ class Calculator():
 
         # Creating the calculator operations 
         self.settings["buttons"]["operations"].update(self.settings["buttons"]["global"])
+        self.settings["buttons"]["equal"].update(self.settings["buttons"]["global"])
+
+        self.btn_C = tk.Button(self.buttons_frame, text="C", cnf=self.settings["buttons"]["operations"])
+        self.btn_open = tk.Button(self.buttons_frame, text="(", cnf=self.settings["buttons"]["operations"])
+        self.btn_close = tk.Button(self.buttons_frame, text=")", cnf=self.settings["buttons"]["operations"])
+        self.btn_del = tk.Button(self.buttons_frame, text="<", cnf=self.settings["buttons"]["operations"])
+        self.btn_add = tk.Button(self.buttons_frame, text="+", cnf=self.settings["buttons"]["operations"])
+        self.btn_subtract = tk.Button(self.buttons_frame, text="-", cnf=self.settings["buttons"]["operations"])
+        self.btn_multiply = tk.Button(self.buttons_frame, text="*", cnf=self.settings["buttons"]["operations"])
+        self.btn_share = tk.Button(self.buttons_frame, text="/", cnf=self.settings["buttons"]["operations"])
+        self.btn_point = tk.Button(self.buttons_frame, text=".", cnf=self.settings["buttons"]["operations"])
+        self.btn_equal = tk.Button(self.buttons_frame, text="=", cnf=self.settings["buttons"]["equal"])
 
 
-        # First row
-        self.btn_0.grid(row=0, column=0, padx=1, pady=1)
-        self.btn_1.grid(row=0, column=1, padx=1, pady=1)
-        self.btn_2.grid(row=0, column=2, padx=1, pady=1)
-        self.btn_3.grid(row=0, column=3, padx=1, pady=1)
+        # First row    
+        self.btn_C.grid(row=0, column=0, padx=1, pady=1)
+        self.btn_open.grid(row=0, column=1, padx=1, pady=1)
+        self.btn_close.grid(row=0, column=2, padx=1, pady=1)
+        self.btn_del.grid(row=0, column=3, padx=1, pady=1)
         # Second row
-        self.btn_4.grid(row=1, column=0, padx=1, pady=1)
-        self.btn_5.grid(row=1, column=1, padx=1, pady=1)
-        self.btn_6.grid(row=1, column=2, padx=1, pady=1)
-        self.btn_7.grid(row=1, column=3, padx=1, pady=1)
+        self.btn_7.grid(row=1, column=0, padx=1, pady=1)
+        self.btn_8.grid(row=1, column=1, padx=1, pady=1)
+        self.btn_9.grid(row=1, column=2, padx=1, pady=1)
+        self.btn_add.grid(row=1, column=3, padx=1, pady=1)
         # Third row
-        self.btn_8.grid(row=2, column=0, padx=1, pady=1)
-        self.btn_9.grid(row=2, column=1, padx=1, pady=1)
+        self.btn_4.grid(row=2, column=0, padx=1, pady=1)
+        self.btn_5.grid(row=2, column=1, padx=1, pady=1)
+        self.btn_6.grid(row=2, column=2, padx=1, pady=1)
+        self.btn_subtract.grid(row=2, column=3, padx=1, pady=1)
+        # Fourth row
+        self.btn_1.grid(row=3, column=0, padx=1, pady=1)
+        self.btn_2.grid(row=3, column=1, padx=1, pady=1)
+        self.btn_3.grid(row=3, column=2, padx=1, pady=1)
+        self.btn_multiply.grid(row=3, column=3, padx=1, pady=1)
+        # Fifth place
+        self.btn_point.grid(row=4, column=0, padx=1, pady=1)
+        self.btn_0.grid(row=4, column=1, padx=1, pady=1)
+        self.btn_share.grid(row=4, column=2, padx=1, pady=1)
+        self.btn_equal.grid(row=4, column=3, padx=1, pady=1)
         
 
     def start(self):
