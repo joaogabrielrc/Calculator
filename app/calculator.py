@@ -6,6 +6,8 @@ import tkinter as tk
 
 from json import load as json_load
 
+from functools import partial
+
 class Calculator(): 
     def __init__(self, window):
         self.window = window
@@ -29,6 +31,9 @@ class Calculator():
         self.buttons_frame = tk.Frame(self.window, bg="#666666")
         self.buttons_frame.pack()
         self.create_buttons_content()
+
+        # Creating the click event
+        self.numbers_onclick()
 
 
     @staticmethod
@@ -100,7 +105,13 @@ class Calculator():
         self.btn_0.grid(row=4, column=1, padx=1, pady=1)
         self.btn_share.grid(row=4, column=2, padx=1, pady=1)
         self.btn_equal.grid(row=4, column=3, padx=1, pady=1)
-        
+    
+    def numbers_onclick(self):
+        self.btn_0["command"] = partial(self.set_input_values, 0)
+
+    def set_input_values(self, value):
+        if value == 0:
+            print("I stop here.")
 
     def start(self):
         self.window.mainloop()
