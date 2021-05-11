@@ -1,4 +1,4 @@
-{
+{   
     "input": {
         "bg": "#1a1a1a",
         "fg": "#ffffff",
@@ -14,13 +14,16 @@
             "highlightthickness": 0,
             "width": 5,
             "height": 2,
-            "font": "Arial 14 bold"
+            "font": "Arial 14 bold",
+            "fg": "#ffffff",
+            "activebackground": "#444444",
+            "activeforeground": "#000000"
         },
         "numbers": {
-            "bg": "#0a0a0a",
-            "fg": "#ffffff",
-            "activebackground": "#2a2a2a",
-            "activeforeground": "#000000"
+            "bg": "#0a0a0a"
+        },
+        "operations": {
+            "bg": "#333333"
         }
     }
 }
