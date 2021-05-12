@@ -44,7 +44,7 @@ class Calculator():
     def create_input_content(self):
         self.entry = tk.Entry(self.input_frame, cnf=self.settings["input"])
         self.entry.focus()
-        self.entry.insert(0,0)
+        self.entry.insert(0,"0")
         self.entry.pack(padx=10, pady=20)
 
     def create_buttons_content(self):
@@ -108,10 +108,25 @@ class Calculator():
     
     def numbers_onclick(self):
         self.btn_0["command"] = partial(self.set_input_values, 0)
+        self.btn_1["command"] = partial(self.set_input_values, 1)
+        self.btn_2["command"] = partial(self.set_input_values, 2)
+        self.btn_3["command"] = partial(self.set_input_values, 3)
+        self.btn_4["command"] = partial(self.set_input_values, 4)
+        self.btn_5["command"] = partial(self.set_input_values, 5)
+        self.btn_6["command"] = partial(self.set_input_values, 6)
+        self.btn_7["command"] = partial(self.set_input_values, 7)
+        self.btn_8["command"] = partial(self.set_input_values, 8)
+        self.btn_9["command"] = partial(self.set_input_values, 9)
 
     def set_input_values(self, value):
-        if value == 0:
-            print("I stop here.")
-
+        # Setting and showing the value of the input 
+        if self.entry.get() == "0":
+            self.entry.delete(0)
+            self.entry.insert(0, value)
+        else:
+            value_size = len(self.entry.get())
+            if value_size < 8:
+                self.entry.insert(value_size, value)
+        
     def start(self):
         self.window.mainloop()
