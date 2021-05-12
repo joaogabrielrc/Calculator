@@ -75,7 +75,7 @@ class Calculator():
         self.btn_del = tk.Button(self.buttons_frame, text="<", cnf=self.settings["buttons"]["operations"])
         self.btn_add = tk.Button(self.buttons_frame, text="+", cnf=self.settings["buttons"]["operations"])
         self.btn_subtract = tk.Button(self.buttons_frame, text="-", cnf=self.settings["buttons"]["operations"])
-        self.btn_multiply = tk.Button(self.buttons_frame, text="*", cnf=self.settings["buttons"]["operations"])
+        self.btn_multiply = tk.Button(self.buttons_frame, text="x", cnf=self.settings["buttons"]["operations"])
         self.btn_share = tk.Button(self.buttons_frame, text="/", cnf=self.settings["buttons"]["operations"])
         self.btn_point = tk.Button(self.buttons_frame, text=".", cnf=self.settings["buttons"]["operations"])
         self.btn_equal = tk.Button(self.buttons_frame, text="=", cnf=self.settings["buttons"]["equal"])
@@ -131,7 +131,17 @@ class Calculator():
         self.btn_point["command"] = partial(self.set_input_values, ".")
 
     def conditions(self, value):
-        return True # Stop here
+        list_of_conditioned_values = [")", "+", "-", "x", "/", "."] 
+        answer = True
+
+        if self.entry.get() != "":
+            for v1 in list_of_conditioned_values:
+                if self.entry.get()[-1] == v1:
+                    for v2 in list_of_conditioned_values:
+                        if value == v2:
+                            answer = False
+
+        return answer
 
     def set_input_values(self, value):
         if self.conditions(value):
@@ -157,3 +167,6 @@ class Calculator():
         
     def start(self):
         self.window.mainloop()
+
+
+# I stop on conditions 000
