@@ -34,6 +34,7 @@ class Calculator():
 
         # Creating the click event
         self.numbers_onclick()
+        self.operations_onclick()
 
 
     @staticmethod
@@ -107,26 +108,45 @@ class Calculator():
         self.btn_equal.grid(row=4, column=3, padx=1, pady=1)
     
     def numbers_onclick(self):
-        self.btn_0["command"] = partial(self.set_input_values, 0)
-        self.btn_1["command"] = partial(self.set_input_values, 1)
-        self.btn_2["command"] = partial(self.set_input_values, 2)
-        self.btn_3["command"] = partial(self.set_input_values, 3)
-        self.btn_4["command"] = partial(self.set_input_values, 4)
-        self.btn_5["command"] = partial(self.set_input_values, 5)
-        self.btn_6["command"] = partial(self.set_input_values, 6)
-        self.btn_7["command"] = partial(self.set_input_values, 7)
-        self.btn_8["command"] = partial(self.set_input_values, 8)
-        self.btn_9["command"] = partial(self.set_input_values, 9)
+        self.btn_0["command"] = partial(self.set_input_values, "0")
+        self.btn_1["command"] = partial(self.set_input_values, "1")
+        self.btn_2["command"] = partial(self.set_input_values, "2")
+        self.btn_3["command"] = partial(self.set_input_values, "3")
+        self.btn_4["command"] = partial(self.set_input_values, "4")
+        self.btn_5["command"] = partial(self.set_input_values, "5")
+        self.btn_6["command"] = partial(self.set_input_values, "6")
+        self.btn_7["command"] = partial(self.set_input_values, "7")
+        self.btn_8["command"] = partial(self.set_input_values, "8")
+        self.btn_9["command"] = partial(self.set_input_values, "9")
+
+    def operations_onclick(self):
+        self.btn_C["command"] = partial(self.clear_input_values, "clear")
+        self.btn_del["command"] = partial(self.clear_input_values, "delete")
 
     def set_input_values(self, value):
         # Setting and showing the value of the input 
-        if self.entry.get() == "0":
+        if self.entry.get() == "" or self.entry.get() == "0":
             self.entry.delete(0)
             self.entry.insert(0, value)
-        else:
-            value_size = len(self.entry.get())
-            if value_size < 8:
-                self.entry.insert(value_size, value)
+
+        else:   
+            if len(self.entry.get()) < 8:
+                self.entry.insert(len(self.entry.get()), value)
+
+    def clear_input_values(self, value):
+        # clearing and showing the value of the input
+        if value == "clear":
+            self.entry.delete(0, len(self.entry.get()))
+            self.set_input_values(0)
+
+        # deleting and showing the value of the input
+        elif value == "delete":
+            self.entry.delete(0)
+            if len(self.entry.get()) == 0:
+                self.set_input_values(0)
         
     def start(self):
         self.window.mainloop()
+
+
+# Stop in operation_onclick
