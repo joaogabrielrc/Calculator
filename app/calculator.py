@@ -121,32 +121,39 @@ class Calculator():
 
     def operations_onclick(self):
         self.btn_C["command"] = partial(self.clear_input_values, "clear")
+        self.btn_open["command"] = partial(self.set_input_values, "(")
+        self.btn_close["command"] = partial(self.set_input_values, ")")
         self.btn_del["command"] = partial(self.clear_input_values, "delete")
+        self.btn_add["command"] = partial(self.set_input_values, "+")
+        self.btn_subtract["command"] = partial(self.set_input_values, "-")
+        self.btn_multiply["command"] = partial(self.set_input_values, "x")
+        self.btn_share["command"] = partial(self.set_input_values, "/")
+        self.btn_point["command"] = partial(self.set_input_values, ".")
+
+    def conditions(self, value):
+        return True # Stop here
 
     def set_input_values(self, value):
-        # Setting and showing the value of the input 
-        if self.entry.get() == "" or self.entry.get() == "0":
-            self.entry.delete(0)
-            self.entry.insert(0, value)
-
-        else:   
-            if len(self.entry.get()) < 8:
-                self.entry.insert(len(self.entry.get()), value)
+        if self.conditions(value):
+            # Setting and showing the value of the input 
+            if self.entry.get() == "" or self.entry.get() == "0":
+                self.entry.delete(0)
+                self.entry.insert(0, value)
+            else:   
+                if len(self.entry.get()) < 8:
+                    self.entry.insert(len(self.entry.get()), value)
 
     def clear_input_values(self, value):
         # clearing and showing the value of the input
         if value == "clear":
             self.entry.delete(0, len(self.entry.get()))
-            self.set_input_values(0)
+            self.set_input_values("0")
 
         # deleting and showing the value of the input
         elif value == "delete":
-            self.entry.delete(0)
+            self.entry.delete(len(self.entry.get()) - 1)
             if len(self.entry.get()) == 0:
-                self.set_input_values(0)
+                self.set_input_values("0")
         
     def start(self):
         self.window.mainloop()
-
-
-# Stop in operation_onclick
