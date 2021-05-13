@@ -8,9 +8,6 @@ from json import load as json_load
 
 from functools import partial
 
-#Internal Module
-from .calculation import Calculation
-
 class Calculator(): 
     def __init__(self, window):
         self.window = window
@@ -132,7 +129,7 @@ class Calculator():
         self.btn_multiply["command"] = partial(self.set_input_values, "x")
         self.btn_share["command"] = partial(self.set_input_values, "/")
         self.btn_point["command"] = partial(self.set_input_values, ".")
-        self.btn_equal["command"] = partial(self.get_input_values)
+        self.btn_equal["command"] = partial(self.calculation)
 
     def conditions(self, value):
         list_of_conditioned_values = [")", "+", "-", "x", "/", "."] 
@@ -168,13 +165,26 @@ class Calculator():
             self.entry.delete(len(self.entry.get()) - 1)
             if len(self.entry.get()) == 0:
                 self.set_input_values("0")
-    
-    def get_input_values(self):
-        self.result = Calculation.return_the_result(self.entry.get())
-        self.set_input_values(self.result)
+
+    def calculation(self):
+        result_value = "0"
+        list_of_numbers = ["1", "2"]
+        list_of_operations = ["(", ")", "+", "-", "x", "/", "."]
+        input_value = self.entry.get()
+
+        if "x" in input_value:
+            input_value.replace("x", "*")
+
+        try:   # Stop here
+            print(input_values)
+        except:
+            result_value = "Error"
+
+        self.set_input_result(result_value)
+
+    def set_input_result(self, result_value):
+        self.entry.delete(0, len(self.entry.get()))
+        self.entry.insert(0, result_value) 
 
     def start(self):
         self.window.mainloop()
-
-
-# Erase the screen and show only the result
