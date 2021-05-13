@@ -8,6 +8,9 @@ from json import load as json_load
 
 from functools import partial
 
+#Internal Module
+from .calculation import Calculation
+
 class Calculator(): 
     def __init__(self, window):
         self.window = window
@@ -129,6 +132,7 @@ class Calculator():
         self.btn_multiply["command"] = partial(self.set_input_values, "x")
         self.btn_share["command"] = partial(self.set_input_values, "/")
         self.btn_point["command"] = partial(self.set_input_values, ".")
+        self.btn_equal["command"] = partial(self.get_input_values)
 
     def conditions(self, value):
         list_of_conditioned_values = [")", "+", "-", "x", "/", "."] 
@@ -164,9 +168,9 @@ class Calculator():
             self.entry.delete(len(self.entry.get()) - 1)
             if len(self.entry.get()) == 0:
                 self.set_input_values("0")
-        
+    
+    def get_input_values(self):
+        Calculation(self.entry.get())
+
     def start(self):
         self.window.mainloop()
-
-
-# I stop on conditions 000
