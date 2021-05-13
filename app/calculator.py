@@ -170,7 +170,11 @@ class Calculator():
                 self.set_input_values("0")
     
     def get_input_values(self):
-        Calculation(self.entry.get())
+        self.result = Calculation.return_the_result(self.entry.get())
+        self.set_input_values(self.result)
 
     def start(self):
         self.window.mainloop()
+
+
+# Erase the screen and show only the result

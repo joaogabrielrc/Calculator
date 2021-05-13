@@ -3,5 +3,8 @@
 
 
 class Calculation():
-    def __init__(self, input_value):
-        print(input_value)
+    def __init__(self) -> None:
+        pass
+        
+    def return_the_result(input_value):
+        return "55"
