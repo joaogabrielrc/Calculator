@@ -8,9 +8,13 @@ from json import load as json_load
 
 from functools import partial
 
+# Internal module
+from .calculation import Calculation
+
 class Calculator(): 
     def __init__(self, window):
         self.window = window
+        self.calculation = Calculation()
 
         # Loading settings
         self.settings = self.load_settings()
@@ -19,7 +23,7 @@ class Calculator():
         self.window.title("Calculator")
         self.window.maxsize(width=290, height=410)
         self.window.minsize(width=290, height=410)
-        self.window.geometry("+150+100")
+        self.window.geometry("-150+100")
         self.window["bg"] = "#1a1a1a"
 
         # Creating the input
@@ -129,7 +133,7 @@ class Calculator():
         self.btn_multiply["command"] = partial(self.set_input_values, "x")
         self.btn_share["command"] = partial(self.set_input_values, "/")
         self.btn_point["command"] = partial(self.set_input_values, ".")
-        self.btn_equal["command"] = partial(self.calculation)
+        self.btn_equal["command"] = partial(self.set_input_result)
 
     def conditions(self, value):
         list_of_conditioned_values = [")", "+", "-", "x", "/", "."] 
@@ -150,6 +154,11 @@ class Calculator():
             if self.entry.get() == "" or self.entry.get() == "0":
                 self.entry.delete(0)
                 self.entry.insert(0, value)
+
+            elif self.entry.get() == "Erro":
+                self.entry.delete(0, 4)
+                self.entry.insert(0, value)
+
             else:   
                 if len(self.entry.get()) < 8:
                     self.entry.insert(len(self.entry.get()), value)
@@ -166,40 +175,8 @@ class Calculator():
             if len(self.entry.get()) == 0:
                 self.set_input_values("0")
 
-    def calculation(self):
-        result_value = "0"
-        calc = ""
-        list_of_numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-        list_of_operations = ["(", ")", "+", "-", "x", "/", "."]
-        input_value = self.entry.get()            
-
-        try:   
-            value = []
-            for i in range(0, len(input_value)):
-
-                for n in list_of_numbers:
-                    if input_value[i] == n:
-                        value.append(int(input_value[i]))
-
-                for o in list_of_operations:
-                    if input_value[i] == o:
-                        if o != "x":
-                            value.append(input_value[i])
-                        else:
-                            value.append("*")
-
-            for v in value:
-                calc += v
-                
-            
-            print(calc)
-
-        except:
-            result_value = "Error"
-
-        self.set_input_result(result_value)
-
-    def set_input_result(self, result_value):
+    def set_input_result(self):
+        result_value = self.calculation.exe_calculation(self.entry.get())
         self.entry.delete(0, len(self.entry.get()))
         self.entry.insert(0, result_value) 
 
