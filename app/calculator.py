@@ -168,15 +168,32 @@ class Calculator():
 
     def calculation(self):
         result_value = "0"
-        list_of_numbers = ["1", "2"]
+        calc = ""
+        list_of_numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
         list_of_operations = ["(", ")", "+", "-", "x", "/", "."]
-        input_value = self.entry.get()
+        input_value = self.entry.get()            
 
-        if "x" in input_value:
-            input_value.replace("x", "*")
+        try:   
+            value = []
+            for i in range(0, len(input_value)):
 
-        try:   # Stop here
-            print(input_values)
+                for n in list_of_numbers:
+                    if input_value[i] == n:
+                        value.append(int(input_value[i]))
+
+                for o in list_of_operations:
+                    if input_value[i] == o:
+                        if o != "x":
+                            value.append(input_value[i])
+                        else:
+                            value.append("*")
+
+            for v in value:
+                calc += v
+                
+            
+            print(calc)
+
         except:
             result_value = "Error"
 
